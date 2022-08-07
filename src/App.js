@@ -23,7 +23,7 @@ function App() {
        // deal with edit
     }
     else{
-      // show alert
+      showAlert(true, 'success', 'item added to the list')
       const newItem = {id: new Date().getTime().toString(),
       title:name};
       setList([...list, newItem]);
@@ -33,6 +33,10 @@ function App() {
 
   const showAlert = (show=false, type='', msg='')=>{
     setAlert({show:show, type, msg})
+  }
+  const clearList = () => {
+    showAlert(true, 'danger', 'empty List')
+    setList([])
   }
 
 
@@ -55,10 +59,10 @@ function App() {
       {list.length > 0 && (
         <div className='grocery-container'>
             <List items={list}/>
-            <button className='clear-btn'>clear items</button>
+            <button className='clear-btn' onClick={clearList}>clear items</button>
         </div>
       )}
   </section>
 }
 
-export default App
+export default App;
